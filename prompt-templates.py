@@ -14,7 +14,7 @@ llm = ChatOpenAI(
 # Prompt Template
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system","you are an ai chef.Create a unique recipe based on following main ingredient"),
+        ("system","Generate a list of 10 synonyms for the following word.Return the results as a comma separated list"),
         ("human","{input}")
     ]
 )
@@ -22,6 +22,6 @@ prompt = ChatPromptTemplate.from_messages(
 # Create LLM Chain
 chain = prompt | llm 
 
-response = chain.invoke({"input":"tomatoes"})
+response = chain.invoke({"input":"happy"})
 
 print(response.content)
