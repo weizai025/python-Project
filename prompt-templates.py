@@ -12,11 +12,16 @@ llm = ChatOpenAI(
 )
 
 # Prompt Template
-prompt = ChatPromptTemplate.from_template('tell me a joke about the {subject}')
+prompt = ChatPromptTemplate.from_messages(
+    [
+        ("system","you are an ai chef.Create a unique recipe based on following main ingredient"),
+        ("human","{input}")
+    ]
+)
 
 # Create LLM Chain
 chain = prompt | llm 
 
-response = chain.invoke({"subject":"dog"})
+response = chain.invoke({"input":"tomatoes"})
 
-print(response)
+print(response.content)
