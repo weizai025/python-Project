@@ -65,8 +65,8 @@ def call_json_output_paser():
     )
 
     class Person(BaseModel):
-        name:str = Field(description="the name of the person")
-        age:int = Field(description="the age of the person")
+        recipe:str = Field(description="the name of the recipe")
+        ingredients:list = Field(description="the list of ingredients")
 
     # parse
     parser = JsonOutputParser(pydantic_object=Person)
@@ -74,7 +74,7 @@ def call_json_output_paser():
     chain = prompt | llm | parser
 
     return chain.invoke({
-        "phrase":"lisi is 20 years old",
+        "phrase":"the ingredients for a Margherita pizza are tomatoes ,onions,cheese and potatoes",
         "format_instructions":parser.get_format_instructions()})
 
 print(call_json_output_paser())
